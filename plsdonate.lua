@@ -59,7 +59,7 @@ purchaseButton.MouseButton1Click:Connect(function()
         loadingLabel.Visible = true
 
         -- Prompt mua GamePass
-        local gamepassId = 1502837723 -- 👉 thay bằng ID gamepass của bạn
+        local gamepassId = 139947864 -- 👉 thay bằng ID gamepass của bạn
         MarketplaceService:PromptGamePassPurchase(player, gamepassId)
     end
 end)
