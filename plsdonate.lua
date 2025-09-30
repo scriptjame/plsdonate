@@ -2,6 +2,7 @@
 
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
+local MarketplaceService = game:GetService("MarketplaceService")
 
 -- Tạo ScreenGui
 local screenGui = Instance.new("ScreenGui")
@@ -44,8 +45,21 @@ confirmLabel.BackgroundTransparency = 1
 confirmLabel.Visible = false
 confirmLabel.Parent = frame
 
--- Bắt đầu sau 2s
+-- Chuyển sang Confirm sau 2s
 task.wait(2)
 loadingLabel.Visible = false
 confirmLabel.Visible = true
 purchaseButton.Text = "Confirm"
+
+-- Xử lý khi bấm Confirm
+purchaseButton.MouseButton1Click:Connect(function()
+    if confirmLabel.Visible then
+        purchaseButton.Text = "Loading..."
+        confirmLabel.Visible = false
+        loadingLabel.Visible = true
+
+        -- Prompt mua GamePass
+        local gamepassId = 89294735 -- 👉 thay bằng ID gamepass của bạn
+        MarketplaceService:PromptGamePassPurchase(player, gamepassId)
+    end
+end)
